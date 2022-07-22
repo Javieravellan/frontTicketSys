@@ -1,0 +1,28 @@
+<div>
+    <br>
+    <div class="row">
+        <div class="col-sm-4 m-0">
+            <h4 class="card-title">Listado de tickets</h4>
+        </div>
+        <div class="col-sm-8 align-self-center">
+            <form [formGroup]="formFiltroFecha!" (ngSubmit)="getTicketsByPeriod()">
+                <div class="row mb-4">
+                    <label class="col-sm-2 col-form-label">Fecha inicial:</label>
+                    <div class="col-sm-3">
+                        <input type="date" formControlName="fechaInicio" class="form-control" />
+                    </div>
+                    <label class="col-sm-2 col-form-label">Fecha fin:</label>
+                    <div class="col-sm-3">
+                        <input type="date" formControlName="fechaFin" class="form-control" />
+                    </div>
+                    <div class="col-sm-2">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="bi bi-search"></i>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <app-tabla-datos></app-tabla-datos>
+</div>
