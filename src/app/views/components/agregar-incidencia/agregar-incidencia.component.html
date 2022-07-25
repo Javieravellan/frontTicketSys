@@ -1,0 +1,29 @@
+<div class="modal-content">
+    <div class="modal-header">
+        <h4 class="fs-6">Agregar historial de incidencia</h4>
+        <button type="button" (click)="activeModal.close()" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    </div>
+    <div class="modal-body">
+        <form [formGroup]="formIncidencia!" (ngSubmit)="sendFormIncidencia()">
+            <div class="mb-3">
+                <label for="soporte" class="form-label">Usuario de soporte</label>
+                <input type="text" [(ngModel)]="incidenciaActual.usuarioSoporte" 
+                    formControlName="usuarioSoporte" class="form-control" id="soporte" placeholder="Escriba nombre de usuario de soporte...">
+            </div>
+            <div class="mb-3">
+                <label for="fIngreso" class="form-label">Fecha ingreso</label>
+                <input type="date" [(ngModel)]="incidenciaActual.fechaFormateada" 
+                    formControlName="fechaAtencion" class="form-control" id="fIngreso">
+            </div>
+            <div class="mb-3">
+                <label for="comentario" class="form-label">Comentario</label>
+                <textarea class="form-control" [(ngModel)]="incidenciaActual.comentario" 
+                    formControlName="comentario" name="" id="comentario" cols="30" rows="3" 
+                    placeholder="Escriba un comentario..."></textarea>
+            </div>
+            <div class="mb-3">
+                <button type="submit" class="btn btn-info">Agregar</button>
+            </div>
+        </form>
+    </div>
+</div>

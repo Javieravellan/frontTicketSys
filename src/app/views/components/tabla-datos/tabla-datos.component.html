@@ -1,17 +1,17 @@
-<!-- <div class="input-group w-50 mb-2">
-    <input type="text" class="form-control" [(ngModel)]="valorBusqueda" placeholder="Buscar por nombre de solicitante">
-    <button class="input-group-addon btn btn-secondary" (click)="buscarPorNombre()"><i class="bi bi-search"></i></button>
-</div> -->
-
 <form>
-    <div class="mb-3 row">
-      <label for="table-filtering-search" class="col-xs-3 col-sm-auto col-form-label">Búsqueda por nombre:</label>
-      <div class="col-xs-3 col-sm-auto">
-        <input id="table-filtering-search" class="form-control" type="text" [formControl]="valorBusqueda!">
-      </div>
+    <div class="d-flex justify-content-between">
+        <div class="mb-3 row">
+            <label for="table-filtering-search" class="col-xs-3 col-sm-auto col-form-label">Búsqueda por nombre:</label>
+            <div class="col-xs-3 col-sm-auto">
+                <input id="table-filtering-search" class="form-control" type="text" [formControl]="valorBusqueda!">
+            </div>
+        </div>
+        <div>
+            <button class="btn btn-success" data-bs-toggle="modal"
+            data-bs-target="#edicion" (click)="abrirModal()">Agregar</button>
+        </div>
     </div>
 </form>
-
 <table class="table table-hover">
     <thead>
         <tr>
@@ -28,18 +28,17 @@
             <td colspan="6" class="text-center">No hay tickets registrados</td>
         </tr>
         <ng-template #tbody>
-            <tr *ngFor="let ticket of tickets$ | async"> 
+            <tr *ngFor="let ticket of tickets$ | async">
                 <th class="text-center">{{ticket.ticketId}}</th>
                 <td>
-                    <!--{{ticket.personaSolicitante}}-->
                     <ngb-highlight [result]="ticket.personaSolicitante" [term]="valorBusqueda!.value"></ngb-highlight>
                 </td>
                 <td>{{ticket.fechaIngreso | date }}</td>
                 <td>{{ticket.asunto}}</td>
                 <td>{{ticket.descripcion}}</td>
                 <td>
-                    <button class="btn btn-danger"><i class="bi bi-pencil-square"></i></button>&nbsp;
-                    <button class="btn btn-warning"><i class="bi bi-trash3-fill"></i></button>
+                    <button class="btn btn-danger"(click)="abrirModal(ticket)"><i class="bi bi-pencil-square"></i></button>&nbsp;
+                    <button class="btn btn-warning" (click)="deleteTicket(ticket.ticketId!)"><i class="bi bi-trash3-fill"></i></button>
                 </td>
             </tr>
         </ng-template>

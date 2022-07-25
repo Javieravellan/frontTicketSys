@@ -28,4 +28,26 @@ export class TicketApiService {
 
     return this.httpClient.get<Ticket[]>(`${environment.pathApi}/tickets/fecha?f1=${f1}&f2=${f2}`);
   } 
+
+  /**
+   * Create a new Ticket
+   */
+  createTicket(ticket: Ticket): Observable<Ticket> {
+    return this.httpClient.post<Ticket>(`${environment.pathApi}`, ticket)
+  }
+
+  /**
+   * Delete Ticket by ID
+   */
+  deleteTicketById(id: number): Observable<any> {
+    return this.httpClient.delete(`${environment.pathApi}/${id}`);
+  }
+
+  /**
+   * Update Tickets
+   */
+  updateTicketById(ticket: Ticket): Observable<Ticket> {
+    console.log(ticket);
+    return this.httpClient.put<Ticket>(`${environment.pathApi}/${ticket.ticketId}`, ticket)
+  }
 }

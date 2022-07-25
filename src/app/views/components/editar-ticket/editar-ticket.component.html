@@ -1,1 +1,40 @@
-<p>editar-ticket works!</p>
+<div class="modal-content">
+    <div class="modal-header">
+        <h5 class="modal-title">Datos ticket</h5>
+        <button type="button" (click)="activeModal.close('Se cerró el modal')" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    </div>
+    <div class="modal-body">
+        <form [formGroup]="formEditar!" (ngSubmit)="sendForm()">
+            <div class="mb-3">
+                <label for="personaSolicitante" class="form-label">Nombre solicitante</label>
+                <input type="text" class="form-control" [(ngModel)]="ticket.personaSolicitante" formControlName="nombreSolicitante" placeholder="Escriba el nombre">
+            </div>
+            <div class="mb-3">
+                <label for="asunto" class="form-label">Asunto</label>
+                <input type="text" class="form-control" [(ngModel)]="ticket.asunto" formControlName="asunto" placeholder="Escriba el asunto">
+            </div>
+            <div class="mb-3">
+                <label for="descripcion" class="form-label">Descripción</label>
+                <input type="text" class="form-control" [(ngModel)]="ticket.descripcion" formControlName="descripcion" placeholder="Escriba una descripción...">
+            </div>
+            <div class="mb-3">
+                <label for="fechaIngreso" class="form-label">Fecha ingreso</label>
+                <input type="date" class="form-control" [(ngModel)]="ticket.fechaFormateada" formControlName="fechaIngreso" />
+            </div>
+            <div class="mb-3">
+                <input type="button" (click)="abrirFormIncidencia()" value="Añadir incidencia" class="btn btn-info btn-sm">
+                <div class="mt-2 alert alert-warning" *ngIf="ticket.historialIncidencia.length > 0">
+                    <h6>Historial incidencias</h6>
+                    <span *ngFor="let histo of ticket.historialIncidencia" class="mr-1">
+                        <span role="button" (click)="abrirFormIncidencia(histo)" class="badge bg-primary" style="margin-right: 5px !important">
+                            {{histo.usuarioSoporte! + ", " + (histo.fechaAtencion | date)}}
+                        </span>
+                    </span>
+                </div>
+            </div>
+            <div>
+                <button type="submit" class="btn btn-danger">Guardar</button>
+            </div>
+        </form>
+    </div>
+</div>

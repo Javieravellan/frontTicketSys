@@ -8,9 +8,10 @@ import { TablaDatosComponent } from './views/components/tabla-datos/tabla-datos.
 import { HomePageComponent } from './views/home-page/home-page.component';
 import { TicketApiService } from './services/ticket-api.service';
 import { HttpClientModule } from '@angular/common/http';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbActiveModal, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule, NgModel, ReactiveFormsModule } from '@angular/forms';
 import { EditarTicketComponent } from './views/components/editar-ticket/editar-ticket.component';
+import { AgregarIncidenciaComponent } from './views/components/agregar-incidencia/agregar-incidencia.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { EditarTicketComponent } from './views/components/editar-ticket/editar-t
     TopBarComponent,
     TablaDatosComponent,
     HomePageComponent,
-    EditarTicketComponent
+    EditarTicketComponent,
+    AgregarIncidenciaComponent
   ],
   imports: [
     BrowserModule,
@@ -28,7 +30,7 @@ import { EditarTicketComponent } from './views/components/editar-ticket/editar-t
     ReactiveFormsModule,
     FormsModule
   ],
-  providers: [],
+  providers: [NgbActiveModal], // obligatorio para obtener el servicio de ActiveModal
   bootstrap: [AppComponent]
 })
 export class AppModule { }
